@@ -1,18 +1,17 @@
 #!/bin/bash
 
-# [TODO] Verification of the number of arguments
-
-# Retrieving arguments :
 ## name : name of the repo to create,
 ## N : number of empty files to create,
 ## prefix : the prefix to put at the start of the file's name,
 ## M : time between each creation of file.
 
+# Verification of the number of arguments
 if [ "$#" -ne 4 ]; then
   echo "Please enter 4 arguments following this : $0 <name> <N> <prefix> <M>"
   exit 1
 fi
 
+# Retrieving arguments
 repo_name=repo_$1
 N=$2
 prefix=$3
@@ -25,7 +24,7 @@ mkdir -p $repo_name
 for ((i=0;i<N;i++)) do
 
 # Date with format : year-month-day-hour-minute-second-millisecond
-now=$(date +%Y-%m-%d-%H-%M-%S-$(date +%2N))
+now=$(date +%Y-%m-%d-%H-%M-%S-$(date +%3N | cut -c1-2))
 
 # Creating the empty file
 touch $repo_name"/"$prefix"_"$now".txt"
@@ -38,4 +37,5 @@ sleep $waiting_time
 done
 
 echo $N" file(s) created succeffully."
-exit
+echo "Script $0 : success."
+exit 0

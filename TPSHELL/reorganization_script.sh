@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Retrieving arguments
+# Verification of the number of arguments
+if [ "$#" -ne 1 ]; then
+  echo "Please enter the name of the ropository to update : $0 <name>"
+  exit 1
+fi
 
+# Retrieving arguments
 repo=repo_$1
 
 mkdir -p "root/"$repo
@@ -48,5 +53,5 @@ done
 
 # Delete empty directory
 rmdir $repo
-echo "Success"
-exit
+echo "Script $0 : success."
+exit 0
